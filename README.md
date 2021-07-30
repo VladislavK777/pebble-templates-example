@@ -1,1 +1,1 @@
-# pebble-templates-example
+# pebble-template-example
