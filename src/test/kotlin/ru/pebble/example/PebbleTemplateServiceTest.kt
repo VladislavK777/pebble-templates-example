@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.util.Assert.isTrue
 import ru.pebble.example.builders.FilterContextForSqlBuilder
 import ru.pebble.example.services.PebbleTemplateService
 
@@ -15,11 +16,11 @@ class PebbleTemplateServiceTest {
 
     @Test
     fun testSqlTemplate() {
-        println(pebbleTemplateService.prepareSqlTemplate())
+        isTrue("select f.*\nfrom foo f\nwhere f.count = 10" == pebbleTemplateService.prepareSqlTemplate(), "")
     }
 
     @Test
     fun testSqlTemplateFromString() {
-        println(pebbleTemplateService.prepareSqlTemplateFromString())
+        isTrue("select f.id\nfrom foo f\nwhere f.count = 10" == pebbleTemplateService.prepareSqlTemplateFromString(), "")
     }
 }
